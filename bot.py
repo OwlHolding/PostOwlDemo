@@ -10,6 +10,7 @@ with open('config.json') as f:
 
 con = sqlite3.connect('database.db', check_same_thread=False)
 
+
 def process_response(message: telebot.types.Message, section: str):
     if message.text == config[section]['buttonOK']:
         bot.send_message(message.chat.id, config[section]['messageOK'])
@@ -23,7 +24,8 @@ def process_response(message: telebot.types.Message, section: str):
                 'UPDATE users SET status="refused" WHERE id=?', [(message.chat.id,)])
     else:
         bot.send_message(message.chat.id, config[section]['messageUnknown'])
-        bot.register_next_step_handler(message, process_response, section=section)   
+        bot.register_next_step_handler(message, process_response, section=section)
+
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message: telebot.types.Message):
@@ -40,10 +42,8 @@ def send_welcome(message: telebot.types.Message):
             message.chat.id, config[section]['messageHello'], reply_markup=keyboard)
         with con:
             con.executemany(
-                'INSERT OR REPLACE INTO users (id, username, section, status) values(?, ?, ?, ?)', 
+                'INSERT OR REPLACE INTO users (id, username, section, status) values(?, ?, ?, ?)',
                 [(message.chat.id, message.chat.username, section, "launched")])
         bot.register_next_step_handler(message, process_response, section=section)
     except KeyError:
         pass
-
-bot.infinity_polling()

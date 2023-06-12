@@ -1,0 +1,4 @@
+{
+  "ssl-cert": "/etc/letsencrypt/live/owl-space.ru/fullchain.pem",
+  "ssl-private": "/etc/letsencrypt/live/owl-space.ru/privkey.pem"
+}
