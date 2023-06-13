@@ -3,7 +3,11 @@ import json
 import sqlite3
 
 with open('token') as f:
-    bot = telebot.TeleBot(f.read())
+    token = f.read()
+
+bot = telebot.TeleBot(token)
+bot.remove_webhook()
+bot.set_webhook(url=f'https://owl-space.ru:80/{token}/')
 
 with open('config.json') as f:
     config = json.load(f)
