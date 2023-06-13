@@ -51,3 +51,7 @@ def send_welcome(message: telebot.types.Message):
         bot.register_next_step_handler(message, process_response, section=section)
     except KeyError:
         pass
+
+if __name__ == '__main__':
+    bot.remove_webhook()
+    bot.infinity_polling()
