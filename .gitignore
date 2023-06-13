@@ -7,3 +7,5 @@ venv/*
 token
 
 __pycache__
+
+database.db

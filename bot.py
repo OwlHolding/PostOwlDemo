@@ -1,7 +1,6 @@
 import telebot
 import json
 import sqlite3
-import ssl
 
 with open('token') as f:
     bot = telebot.TeleBot(f.read())
@@ -48,19 +47,3 @@ def send_welcome(message: telebot.types.Message):
         bot.register_next_step_handler(message, process_response, section=section)
     except KeyError:
         pass
-
-
-with open('ssl-config.json', 'rb') as file:
-    ssl_config = json.load(file)
-
-
-context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
-context.load_cert_chain(ssl_config['ssl-cert'], ssl_config['ssl-private'])
-
-bot.run_webhooks(
-    listen='0.0.0.0',
-    port=80,
-    certificate_key=ssl_config['ssl-private'],
-    certificate=ssl_config['ssl-cert'],
-    webhook_url='https://owl-space.ru/'
-)
