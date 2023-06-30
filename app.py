@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 import json
-from bot import bot
+from bot import bot, token
 import telebot
 import uvicorn
 
@@ -8,10 +8,6 @@ app = FastAPI()
 
 with open('app-config.json', 'rb') as file:
     config = json.load(file)
-
-with open('token', 'r') as file:
-    token = file.read()
-
 
 @app.post(f'/{token}/')
 async def handler(update: dict):

@@ -6,8 +6,6 @@ with open('token') as f:
     token = f.read()
 
 bot = telebot.TeleBot(token)
-bot.remove_webhook()
-bot.set_webhook(url=f'https://owl-space.ru:80/{token}/')
 
 with open('config.json') as f:
     config = json.load(f)
