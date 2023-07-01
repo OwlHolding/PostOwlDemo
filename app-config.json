@@ -1,5 +1,5 @@
 {
   "ssl-cert": "/etc/letsencrypt/live/owl-space.ru/fullchain.pem",
   "ssl-private": "/etc/letsencrypt/live/owl-space.ru/privkey.pem",
-  "app-url": "https://owl-space.ru:80/"
+  "app-url": "https://owl-space.ru:80"
 }
