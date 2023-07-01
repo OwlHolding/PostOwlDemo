@@ -19,10 +19,7 @@ async def handler(update: dict):
 
 bot.remove_webhook()
 
-bot.set_webhook(
-    url=config['app-url']+f"/{token}/",
-    certificate=open(config['ssl-cert'], 'r')
-)
+bot.set_webhook(url=config['app-url']+f"/{token}/")
 
 uvicorn.run(
     app,
